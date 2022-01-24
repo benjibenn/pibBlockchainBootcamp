@@ -1,0 +1,50 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn add @openzepellin/contracts
+
+PATH: 
+  /Users/benjaminwong/.rvm/gems/ruby-2.7.0/bin:/Users/benjaminwong/.rvm/gems/ruby-2.7.0@global/bin:/Users/benjaminwong/.rvm/rubies/ruby-2.7.0/bin:/usr/local/opt/ruby/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/Library/Apple/usr/bin:/Users/benjaminwong/Library/Android/sdk/emulator:/Users/benjaminwong/Library/Android/sdk/tools:/Users/benjaminwong/Library/Android/sdk/tools/bin:/Users/benjaminwong/.rvm/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  16.13.1
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@openzepellin%2fcontracts: Not found
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66988:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140662:22)
+      at Request.emit (node:events:390:28)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141634:10)
+      at Request.emit (node:events:390:28)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141556:12)
+      at Object.onceWrapper (node:events:509:28)
+      at IncomingMessage.emit (node:events:402:35)
+      at endReadableNT (node:internal/streams/readable:1343:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+npm manifest: 
+  {
+    "name": "blockchain",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "devDependencies": {
+      "@nomiclabs/hardhat-ethers": "^2.0.3",
+      "@nomiclabs/hardhat-waffle": "^2.0.1",
+      "chai": "^4.3.4",
+      "ethereum-waffle": "^3.4.0",
+      "ethers": "^5.5.2",
+      "hardhat": "^2.8.0",
+      "hardhat-gas-reporter": "^1.0.6"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
