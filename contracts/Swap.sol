@@ -5,14 +5,14 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract Swap{
     mapping(address => uint256) private ethBalance;
-    mapping(address => uint256) private daiBalance;
-    address constant daiAddress = 0x95b58a6Bff3D14B7DB2f5cb5F0Ad413DC2940658;
+    mapping(address => uint256) private linkBalance;
+    address constant linkAddress = 0x01BE23585060835E02B77ef475b0Cc51aA1e0709;
     AggregatorV3Interface internal priceFeedEth;
-    AggregatorV3Interface internal priceFeedDai;
+    AggregatorV3Interface internal priceFeedLink;
 
     constructor() {
         priceFeedEth = AggregatorV3Interface(0x8A753747A1Fa494EC906cE90E9f37563A8AF630e);
-        priceFeedDai = AggregatorV3Interface(0x2bA49Aaa16E6afD2a993473cfB70Fa8559B523cF);
+        priceFeedLink = AggregatorV3Interface(0xd8bD0a1cB028a31AA859A21A3758685a95dE4623);
     }
 
 
@@ -21,9 +21,9 @@ contract Swap{
 		return ethBalance[getter];
 	}
 
-	function getBalanceDai(address getter) public view returns (uint256)
+	function getBalanceLink(address getter) public view returns (uint256)
 	{
-		return daiBalance[getter];
+		return linkBalance[getter];
 	}
 
 
@@ -42,7 +42,7 @@ contract Swap{
         return price;
 	}
 
-    function getLatestPriceDai() public view returns (int)
+    function getLatestPriceLink() public view returns (int)
 	{
 		(
             uint80 roundID, 
@@ -50,7 +50,7 @@ contract Swap{
             uint startedAt,
             uint timeStamp,
             uint80 answeredInRound
-        ) = priceFeedDai.latestRoundData();
+        ) = priceFeedLink.latestRoundData();
         return price;
 	}
 
@@ -59,11 +59,11 @@ contract Swap{
         ethBalance[msg.sender] += msg.value; 
     }
 
-    function depositDai(uint256 amount) public payable {
-        IERC20 dai = IERC20(daiAddress);
-        require(dai.balanceOf(msg.sender) >= amount, "Dai balance not enough");
-        dai.transferFrom(msg.sender, address(this), amount);
-        daiBalance[msg.sender] += msg.value; 
+    function depositLink(uint256 amount) public payable {
+        IERC20 link = IERC20(linkAddress);
+        require(link.balanceOf(msg.sender) >= amount, "Link balance not enough");
+        link.transferFrom(msg.sender, address(this), amount);
+        linkBalance[msg.sender] += msg.value; 
     }
 
     function withdrawEth(uint256 amount) public {
@@ -72,12 +72,11 @@ contract Swap{
         payable(msg.sender).transfer(amount);
     }
 
-    function withdrawDai(uint256 amount) public {
-        IERC20 dai = IERC20(daiAddress);
-        require(daiBalance[msg.sender] >= amount, "Dai balance not enough");
-		daiBalance[msg.sender] -= amount;
-        
-        dai.transfer(msg.sender, amount);
+    function withdrawLink(uint256 amount) public {
+        IERC20 link = IERC20(linkAddress);
+        require(linkBalance[msg.sender] >= amount, "Link balance not enough");
+		linkBalance[msg.sender] -= amount;
+        link.transfer(msg.sender, amount);
     }   
 }
 
